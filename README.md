@@ -1,6 +1,28 @@
 # INFO 5940 
 Welcome to the INFO 5940 repository. You will complete your work using [**GitHub Codespaces**](#about-github-codespaces) and save your progress in your own GitHub repository. This guide will walk you through setting up the development environment and running the test notebook.  
 
+## Modifications on requirements.txt
+The version of pandas library is upgraded to 2.2.2, and the version of numpy library is upgraded to 1.26.4 to resolve the library compatibility issues.
+
+## Instructions to run the application using the provided setup
+1. Use export API_KEY="YOUR_API_KEY" to store your api key in the terminal
+2. Use export BASE_URL="base_url" to store the base URL in the terminal. In this repo, we used Cornell's Gateway to access models.
+3. Run streamlit run chat_with_pdf.py to run the application using the provided setup.
+4. Upload your files with .txt or .pdf extentions in the application.
+5. Build index with these files.
+6. Then you can chat with the AI!
+7. You can upload multiple files at once. If you want to change the uploaded file, you can delete the files and rebuild the index.
+
+## Overview of application’s features
+1. Users can change the temperature of the model with the sidebar
+2. Settings of the Chunk could also be modified in the sidebar
+3. The interface supports natural and multi-turn interaction
+4. User-friendly experience
+5. Users can clear the chat history
+6. Multiple file upload supported. PDF and TXT files are supported.
+
+
+
 ## Getting Started 
 
 ### Step 1: Fork this repository 
@@ -92,14 +114,4 @@ You will receive an individual API Key for class assignments. To prevent acciden
 - The Jupyter extension should install automatically. If you still cannot select a Python kernel on Jupyter Notebook: Go to the left sidebar >> **Extensions** >> search for **Jupyter** >> reload window (or reinstall it).   
 
 
-## Modifications on requirements.txt
-The version of pandas library is upgraded to 2.2.2, and the version of numpy library is upgraded to 1.26.4 to resolve the library compatibility issues.
 
-## Instructions to run the application using the provided setup
-1. Use export API_KEY="YOUR_API_KEY" to store your api key in the terminal
-2. Use export BASE_URL="base_url" to store the base URL in the terminal. In this repo, we used Cornell's Gateway to access models.
-3. Run streamlit run chat_with_pdf.py to run the application using the provided setup.
-4. Upload your files with .txt or .pdf extentions in the application.
-5. Build index with these files.
-6. Then you can chat with the AI!
-7. You can upload multiple files at once. If you want to change the uploaded file, you can delete the files and rebuild the index.

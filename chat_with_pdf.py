@@ -71,6 +71,7 @@ def read_pdf(file_bytes: bytes) -> str:
     text = []
     reader = PdfReader(io.BytesIO(file_bytes))
     for page in reader.pages:
+        #Extract text from PDF
         t = page.extract_text() or ""
         text.append(t)
     return "\n".join(text)
@@ -83,14 +84,17 @@ def load_documents(files) -> List[Document]:
     for f in files:
         name = f.name
         b = f.getvalue()
+        # Read .txt and .md files
         if name.lower().endswith((".txt", ".md")):
             c = read_txt_or_md(b)
+        # Read .pdf files
         elif name.lower().endswith(".pdf"):
             c = read_pdf(b)
         else:
             continue
         if not c.strip():
             continue
+        # Add text
         docs.append(Document(page_content=c, metadata={"source": name}))
     return docs
 
@@ -99,10 +103,14 @@ def build_index(files):
     Build a vector-based retrieval index from uploaded documents.
     '''
     docs = load_documents(files)
+    # Split the documents into smaller overlapping text chunks
     splitter = RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
     split_docs = splitter.split_documents(docs)
+    # Generate vector embeddings
     embeddings = OpenAIEmbeddings(model="openai.text-embedding-3-small")
+    # Store the embeddings in a Chroma vector database
     vectorstore = Chroma.from_documents(split_docs, embedding=embeddings)
+    # Create a retriever object
     retriever = vectorstore.as_retriever(search_kwargs={"k": top_k})
     return vectorstore, retriever
 
@@ -123,12 +131,15 @@ def answer_stream(question: str):
     Generate a streamed answer to the user’s question.
     '''
     retriever = st.session_state["retriever"]
+    # Use the retriever to get the most relevant documents
     docs = retriever.get_relevant_documents(question)
     context = "\n\n".join([d.page_content for d in docs])
+    # Prepare the message sequence for the LLM
     messages = [
         ("system", "Answer using only the provided context. If not found, say you don't know. Provide brief sources list."),
         ("user", f"Context:\n{context}\n\nQuestion: {question}"),
     ]
+    # Stream the LLM’s response
     for chunk in llm.stream(messages):
         if getattr(chunk, "content", None):
             yield chunk.content
@@ -143,9 +154,11 @@ def render_sources(question: str):
         return
     st.markdown("---")
     st.markdown("**Sources**")
+    # Iterate through the retrieved documents and display each one
     for i, d in enumerate(docs, start=1):
         src = d.metadata.get("source", "unknown")
         preview = (d.page_content[:200] + "…") if len(d.page_content) > 200 else d.page_content
+        # Display each document inside an expandable section
         with st.expander(f"[{i}] {src}", expanded=False):
             st.write(preview)
 

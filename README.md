@@ -32,15 +32,44 @@ Welcome to the INFO 5940 repository. You will complete your work using [**GitHub
 The version of pandas library is upgraded to 2.2.2, and the version of numpy library is upgraded to 1.26.4 to resolve the library compatibility issues.
 
 ## Instructions to run the application using the provided setup
-1. Install dependencies using pip install -r requirements.txt
-2. Use export API_KEY="YOUR_API_KEY" to store your api key in the terminal
-3. Use export BASE_URL="base_url" to store the base URL in the terminal. In this repo, we used Cornell's Gateway to access models.
-4. Run streamlit run chat_with_pdf.py to run the application using the provided setup.
-5. Upload your files with .txt or .pdf extentions in the application.
-6. Build index with these files.
-7. Then you can chat with the AI!
-8. You can upload multiple files at once. If you want to change the uploaded file, you can delete the files and rebuild the index.
-9. Change the settings of the chunks and model temperature using the sidebar.
+---
+
+## How to Run the Application
+
+### 1. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 2. Set Environment Variables
+```bash
+export API_KEY="YOUR_API_KEY"
+export BASE_URL="YOUR_BASE_URL"
+```
+
+In this project, Cornell's Gateway is used as the base URL for accessing models.
+
+---
+### 3. Run the Application
+```bash
+streamlit run chat_with_pdf.py
+```
+
+---
+
+### 4. Use the Application
+1. Upload `.txt` or `.pdf` files.  
+2. Build the index with the uploaded files.  
+3. Start chatting with the AI.  
+4. Modify chunk settings and temperature via the sidebar.  
+5. Rebuild the index anytime to refresh retrieval context.
+
+---
+
+## Notes
+- Multiple file uploads are supported simultaneously.  
+- To replace uploaded files, delete them and rebuild the index.  
+- Chat history can be cleared to start a new conversation.
 
 
 ## Getting Started 

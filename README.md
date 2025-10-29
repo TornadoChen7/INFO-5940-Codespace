@@ -1,26 +1,46 @@
-# INFO 5940 
+# INFO 5940 Assignment 1: RAG Application
+**Author:** Yunshuai Chen
+
 Welcome to the INFO 5940 repository. You will complete your work using [**GitHub Codespaces**](#about-github-codespaces) and save your progress in your own GitHub repository. This guide will walk you through setting up the development environment and running the test notebook.  
+
+## Overview of Application Features
+1. Multiple document uploads: users can upload multiple `.txt` and `.pdf` files.  
+2. Customizable chunk settings: chunk size and overlap can be adjusted from the sidebar.  
+3. Multi-turn natural interaction: supports contextual, continuous conversations.  
+4. User-friendly interface: intuitive layout for easy interaction.  
+5. Chat history management: users can clear chat history anytime.  
+6. Multi-file indexing: supports rebuilding the index when files are modified or replaced.  
+7. Model temperature control: adjust model creativity and randomness.  
+8. Index rebuild: recreate embeddings and retrieval index with updated files and parameters.
+
+---
+## Libraries Used
+
+| Library | Purpose |
+|----------|----------|
+| Streamlit | Build the AI chatbot interface and handle file uploads |
+| LangChain | Manage text splitting, embeddings, and retrieval logic |
+| Chroma | Vector database for document storage and retrieval |
+| OpenAI API | Access and interact with GenAI models |
+| pandas (v2.2.2) | Data manipulation and processing |
+| numpy (v1.26.4) | Numerical computation support |
+
+---
+
 
 ## Modifications on requirements.txt
 The version of pandas library is upgraded to 2.2.2, and the version of numpy library is upgraded to 1.26.4 to resolve the library compatibility issues.
 
 ## Instructions to run the application using the provided setup
-1. Use export API_KEY="YOUR_API_KEY" to store your api key in the terminal
-2. Use export BASE_URL="base_url" to store the base URL in the terminal. In this repo, we used Cornell's Gateway to access models.
-3. Run streamlit run chat_with_pdf.py to run the application using the provided setup.
-4. Upload your files with .txt or .pdf extentions in the application.
-5. Build index with these files.
-6. Then you can chat with the AI!
-7. You can upload multiple files at once. If you want to change the uploaded file, you can delete the files and rebuild the index.
-
-## Overview of application’s features
-1. Users can change the temperature of the model with the sidebar
-2. Settings of the Chunk could also be modified in the sidebar
-3. The interface supports natural and multi-turn interaction
-4. User-friendly experience
-5. Users can clear the chat history
-6. Multiple file upload supported. PDF and TXT files are supported.
-
+1. Install dependencies using pip install -r requirements.txt
+2. Use export API_KEY="YOUR_API_KEY" to store your api key in the terminal
+3. Use export BASE_URL="base_url" to store the base URL in the terminal. In this repo, we used Cornell's Gateway to access models.
+4. Run streamlit run chat_with_pdf.py to run the application using the provided setup.
+5. Upload your files with .txt or .pdf extentions in the application.
+6. Build index with these files.
+7. Then you can chat with the AI!
+8. You can upload multiple files at once. If you want to change the uploaded file, you can delete the files and rebuild the index.
+9. Change the settings of the chunks and model temperature using the sidebar.
 
 
 ## Getting Started 

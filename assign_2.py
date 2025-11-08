@@ -227,7 +227,7 @@ reviewer_agent = Agent(
     name="Reviewer Agent",
     model="openai.gpt-4o",
     instructions=REVIEWER_INSTRUCTIONS.strip(),
-    tools=[]
+    tools=[internet_search]
 )
 
 planner_agent = Agent(
